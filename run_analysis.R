@@ -1,7 +1,7 @@
 # Get Data Course Project
 
 # unzip data files
-#unzip('getdata_projectfiles_UCI HAR Dataset.zip')
+unzip('getdata_projectfiles_UCI HAR Dataset.zip')
 
 # read column names from features.txt
 # and reduce to a vector since index is redundant and fix BodyBody name error
@@ -41,7 +41,7 @@ rm('train', 'test')
 data$activity <- factor(data$activity, levels=actives$index,
                         labels=actives$label)
 data$subject <- factor(data$subject)
-# write full tidy dataset
+# write full dataset
 #write.csv(data, file="human_activity.csv")
 
 # extract mean and std measurements for smaller dataset
@@ -49,12 +49,11 @@ cols <- colNames[grepl('mean()',colNames, fixed=T) |
                  grepl('std()', colNames, fixed=T)]
 cols <- append(cols, c('subject', 'activity'), 0)
 dt <- subset(data, select=cols)
+# remove parens from column names
+colnames(dt) <- sub('()', '', cols, fixed=T)
 
 # means of the selected columns over every (activity, subject) tuple
-summary_dt <- aggregate(. ~ subject+activity, data=dt, FUN=mean)
+summary_dt <- aggregate(. ~ subject + activity, data=dt, mean)
 
 # write summary dataset as csv
 write.csv(summary_dt, file="human_activity_summary.csv")
-
-
-

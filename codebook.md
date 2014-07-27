@@ -1,17 +1,21 @@
 # Data Dictionary - Human Activity Summary Data
 
 subject     INTEGER
+
     Subject whom performed the activity
+    
         1..30
         
 activity    INTEGER
+
     Activity classes of the measured data
-        1 WALKING
-        2 WALKING UPSTAIRS
-        3 WALKING DOWNSTAIRS
-        4 SITTING
-        5 STANDING
-        6 LAYING
+    
+        1 WALKING  
+        2 WALKING UPSTAIRS  
+        3 WALKING DOWNSTAIRS  
+        4 SITTING  
+        5 STANDING  
+        6 LAYING  
 
 ### Time Domain Data
 
